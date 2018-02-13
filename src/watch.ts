@@ -238,7 +238,10 @@ export class WatchManager {
       throw new ClientRuntimeError('Cannot call destroyStream() with active watchers');
     }
 
-    this.getStream().end();
+    const stream = this.getStream();
+    stream.end();
+    // this will close the stream on the server as well
+    stream.cancel();
     this.queue!.destroy();
   }
 
@@ -249,7 +252,10 @@ export class WatchManager {
   private handleError(err: Error) {
     if (this.state === State.Connected) {
       this.queue!.destroy();
-      this.getStream().end();
+      const stream = this.getStream();
+      stream.end();
+      // this will close the stream on the server as well
+      stream.cancel();
     }
     this.state = State.Idle;
 
