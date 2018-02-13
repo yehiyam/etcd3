@@ -241,6 +241,7 @@ export class WatchManager {
     const stream = this.getStream();
     stream.end();
     // this will close the stream on the server as well
+    console.log('CANCELLLLLL')
     stream.cancel();
     this.queue!.destroy();
   }
@@ -255,7 +256,9 @@ export class WatchManager {
       const stream = this.getStream();
       stream.end();
       // this will close the stream on the server as well
-      stream.cancel();
+      console.log('handleError')
+      
+      // stream.cancel();
     }
     this.state = State.Idle;
 

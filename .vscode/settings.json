@@ -1,0 +1,14 @@
+{
+    "mocha.options": {
+        "compilers": "ts-node/register",
+        "timeout": 20000
+    },
+    "mocha.requires": [
+        "ts-node/register",
+        "test/_setup.ts"
+    ],
+    "mocha.files.glob": "test/*.test.ts",
+    "mocha.env": {
+        "ETCD_ADDR": "127.0.0.1:4001"
+    }
+}
